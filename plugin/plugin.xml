@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="com.my.mybraintree"
+      version="0.1.0">
+    <name>MyBraintree</name>
+    <description>Braintree Payments Plugin</description>
+    <license>MIT</license>
+    <keywords>phonegap,braintree</keywords>
+ 
+    <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+ 
+    <asset src="www/jQuery/jquery-2.1.4.min.js" target="js/jQuery/jquery-2.1.4.min.js"/>
+
+    <js-module src="www/myBraintree.js" name="myBraintree">
+        <clobbers target="window.myBraintree" />
+    </js-module>
+ 
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="MyBraintree">
+                <param name="android-package" value="com.my.mybraintree.MyBraintree"/>
+            </feature>
+        </config-file>
+ 
+        <source-file src="src/android/MyBraintree.java" target-dir="src/com/My/MyBraintree" />
+        <!-- source-file src="src/android/libs/android-async-http-1.4.4.jar" target-dir="libs" /-->
+    </platform>          
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+          <feature name="MyBraintree">
+            <param name="ios-package" value="MyBraintree"/>
+          </feature>
+        </config-file>
+
+        <header-file src="src/ios/CMyBraintree.h" target-dir="" />
+        <source-file src="src/ios/CMyBraintree.m" target-dir="" />
+
+        <framework src="Accelerate.framework" />
+        <framework src="AudioToolbox.framework" />
+        <framework src="AVFoundation.framework" />
+        <framework src="CoreLocation.framework" />
+        <framework src="CoreMedia.framework" />
+        <framework src="Foundation.framework" />
+        <framework src="MessageUI.framework" />
+        <framework src="MobileCoreServices.framework" />
+        <framework src="PassKit.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="UIKit.framework" />
+
+        <framework src="src/ios/Frameworks/Braintree.framework" custom="true" />
+    </platform>
+</plugin>
