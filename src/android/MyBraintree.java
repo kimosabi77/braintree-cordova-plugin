@@ -105,18 +105,18 @@ public class MyBraintree extends CordovaPlugin {
 	                public void onSuccess(String content) {
 	                	Bean data = gson.fromJson(content, Bean.class);
 	                	if (data.success) {
-	                        Toast.makeText(mContext, "Payment successed", Toast.LENGTH_LONG).show();
+	                        //Toast.makeText(mContext, "Payment successed", Toast.LENGTH_LONG).show();
 
                             PluginResult result = new PluginResult(PluginResult.Status.OK, content);
                             callbackContext.sendPluginResult(result);
 	                	} else {
-	                        Toast.makeText(mContext, "Payment Failed : " + data.message, Toast.LENGTH_LONG).show();
+	                        //Toast.makeText(mContext, "Payment Failed : " + data.message, Toast.LENGTH_LONG).show();
 
                             PluginResult result = new PluginResult(PluginResult.Status.ERROR);
                             callbackContext.sendPluginResult(result);
                         }
 
-	                	Log.v(TAG, "Payment result : " + content);
+	                	//Log.v(TAG, "Payment result : " + content);
 
 	                }
 	            });
