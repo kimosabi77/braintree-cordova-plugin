@@ -48,6 +48,5 @@
         <framework src="UIKit.framework" />
 
         <framework src="src/ios/Frameworks/Braintree.framework" custom="true" />
-        <framework src="src/ios/Frameworks/Braintree" custom="true" />
     </platform>
 </plugin>
