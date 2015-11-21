@@ -9,8 +9,6 @@
     <keywords>phonegap,braintree</keywords>
  
     <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
- 
-    <asset src="www/jQuery/jquery-2.1.4.min.js" target="js/jQuery/jquery-2.1.4.min.js"/>
 
     <js-module src="www/myBraintree.js" name="myBraintree">
         <clobbers target="window.myBraintree" />
