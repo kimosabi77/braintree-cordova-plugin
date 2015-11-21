@@ -52,7 +52,7 @@ public class MyBraintree extends CordovaPlugin {
         	//Log.v(TAG,"Call Pay");
 
         	SERVER_BASE = args.getString(0);
-            CUSTOMER_ID = args.getString(1)
+            CUSTOMER_ID = args.getString(1);
         	amount = args.getString(2);
         	primaryDescription = args.getString(3);
         	secondaryDescription = args.getString(4);
