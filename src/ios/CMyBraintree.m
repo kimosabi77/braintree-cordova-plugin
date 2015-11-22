@@ -30,16 +30,14 @@ NSString *secondary_description;
     __block CDVPluginResult *pluginResult = nil;
 
     base_url = [command.arguments objectAtIndex:0];
-    customer_id = [command.arguments objectAtIndex:1];
-    amount = [command.arguments objectAtIndex:2];
-    primary_description = [command.arguments objectAtIndex:3];
-    secondary_description = [command.arguments objectAtIndex:4];
+    amount = [command.arguments objectAtIndex:1];
+    primary_description = [command.arguments objectAtIndex:2];
+    secondary_description = [command.arguments objectAtIndex:3];
     
     NSURL *clientTokenURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/token", base_url]];
+    
     NSMutableURLRequest *clientTokenRequest = [NSMutableURLRequest requestWithURL:clientTokenURL];
-    NSDictionary *params = @{@"payment_method_nonce": paymentMethodNonce, @"amount": amount};
-    [clientTokenRequest setValue:@"text/plain" forHTTPHeaderField:@"Accept" setHTTPBody:[self httpBodyForParamsDictionary:params]];
-    clientTokenRequest.HTTPMethod = @"POST";
+    [clientTokenRequest setValue:@"text/plain" forHTTPHeaderField:@"Accept"];
     
     [[[NSURLSession sharedSession] dataTaskWithRequest:clientTokenRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         // TODO: Handle errors
