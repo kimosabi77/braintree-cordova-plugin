@@ -1,6 +1,6 @@
 module.exports = {
 
-    Pay: function (onsuccess, onfail, base_url, amount, pri_desc, sec_desc) {
+    Pay: function (onsuccess, onfail, base_url, customer_id, amount, pri_desc, sec_desc) {
         // Get Client Token
         // alert("execute MyBraintree Pay");
 
@@ -18,7 +18,7 @@ module.exports = {
     	// 	}
     	// });
 
-        cordova.exec(onsuccess, onfail, "MyBraintree", "Pay", [base_url, amount, pri_desc, sec_desc]);
+        cordova.exec(onsuccess, onfail, "MyBraintree", "Pay", [base_url, customer_id, amount, pri_desc, sec_desc]);
 
     }
 }

@@ -12,32 +12,39 @@ NSString *content;
 NSString *callbackID;
 
 NSString *base_url;
+NSString *customer_id;
 NSString *amount;
 NSString *primary_description;
 NSString *secondary_description;
 
 - (void)pluginInitialize {
     
-    NSLog(@"Bluetooth Serial Cordova Plugin - BLE version");
-    NSLog(@"(c)2013-2014 Don Coleman");
-    
+    NSLog(@"Briantree DropIN UI Cordova Plugin");
+    NSLog(@"(c)2015 Kim Richardson");
+
     [super pluginInitialize];
 
-    
+
 }
 
 - (void) Pay:(CDVInvokedUrlCommand *)command {
     __block CDVPluginResult *pluginResult = nil;
 
     base_url = [command.arguments objectAtIndex:0];
-    amount = [command.arguments objectAtIndex:1];
-    primary_description = [command.arguments objectAtIndex:2];
-    secondary_description = [command.arguments objectAtIndex:3];
-    
+    customer_id = [command.arguments objectAtIndex:1];
+    amount = [command.arguments objectAtIndex:2];
+    primary_description = [command.arguments objectAtIndex:3];
+    secondary_description = [command.arguments objectAtIndex:4];
+
     NSURL *clientTokenURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/token", base_url]];
-    
+
     NSMutableURLRequest *clientTokenRequest = [NSMutableURLRequest requestWithURL:clientTokenURL];
-    [clientTokenRequest setValue:@"text/plain" forHTTPHeaderField:@"Accept"];
+
+    NSDictionary *params = @{@"customer_id": customer_id};
+    [clientTokenRequest setHTTPBody:[self httpBodyForParamsDictionary:params]];
+
+    clientTokenRequest.HTTPMethod = @"POST";
+
     
     [[[NSURLSession sharedSession] dataTaskWithRequest:clientTokenRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         // TODO: Handle errors
